@@ -11,4 +11,7 @@ export class MoviesService{
 
     return response.data
   }
+  static async getMoviesById(id: string) {
+    const response = await API.get("")
+  }
 }
