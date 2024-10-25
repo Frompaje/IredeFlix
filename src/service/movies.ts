@@ -11,7 +11,23 @@ export class MoviesService{
 
     return response.data
   }
-  static async getMoviesById(id: string) {
-    const response = await API.get("")
+
+  static async getMoviesById(id: number) {
+    const response = await API.get(`movie/${id}`, {
+      params: {
+        api_key: "db54934853c9ec1bc9926f2ca56bc80e",
+        language:"pt-BR"
+      }
+    })
+    return response.data
+  }
+
+  static async addFavoriteMovie(id: number) {
+    await API.post(`movie/${id}/favorite`,{
+      params: {
+      api_key: "db54934853c9ec1bc9926f2ca56bc80e",
+      language:"pt-BR"
+      }
+    })
   }
 }
