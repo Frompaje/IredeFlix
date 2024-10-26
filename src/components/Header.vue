@@ -8,11 +8,11 @@ const switchMenu = ref(false)
 const toggleValue = () => {
   switchMenu.value = !switchMenu.value
 }
-const routes= [
-    { path: "/", name: "Home"},
-    { path: "/series", name: "Series"},
-    { path: "/movies", name: "Movies" },
-    { path: "/favorite", name: "Favorite" }
+const routes = [
+  { path: "/", name: "Home" },
+  { path: "/series", name: "Series" },
+  { path: "/movies", name: "Movies" },
+  { path: "/favorite", name: "Favorite" }
 ]
 
 </script>
@@ -23,17 +23,18 @@ const routes= [
       <AlignJustify v-if="!switchMenu" />
       <X v-if="switchMenu" />
     </button>
-    
+
 
     <div v-if="switchMenu" class="absolute">
-    
-      <div v-for="route in routes" :key="route.name"  class="z-50 text-xl flex flex-col bg-emerald-900 relative right-10 w-screen rounded top-8 "> 
+
+      <div v-for="route in routes" :key="route.name"
+        class="z-50 text-xl flex flex-col bg-emerald-900 relative right-10 w-screen rounded top-8 ">
         <span class="hover:bg-emerald-950 p-4 cursos-pointer w-full">
-            <nav>
-             <a :href="route.path">{{ route.name }}</a>
-            </nav>
+          <nav>
+            <a :href="route.path">{{ route.name }}</a>
+          </nav>
         </span>
-    </div>
+      </div>
 
 
     </div>

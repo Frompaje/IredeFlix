@@ -4,8 +4,7 @@ import Movies from './Movies.vue';
 </script>
 
 <template>
- <main>
-  <Movies/>
- </main>
+  <main>
+    <Movies />
+  </main>
 </template>
-

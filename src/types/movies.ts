@@ -17,9 +17,9 @@ export type MovieData = {
 
 export type MovieResponse = {
   value: {
-  page: number;
-  results: MovieData[];
-  total_pages: number;
+    page: number;
+    results: MovieData[];
+    total_pages: number;
     total_results: number;
   }
 };

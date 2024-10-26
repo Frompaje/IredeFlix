@@ -11,8 +11,7 @@ const props = defineProps({
 
 <template>
   <button
-    :class="cn('bg-emerald-500 p-3 rounded-lg text-white font-bold cursor-pointer hover:bg-emerald-900 ease-in duration-200 flex gap-2 text-center', props.class)"
-  >
-  <slot />
+    :class="cn('bg-emerald-500 p-3 rounded-lg text-white font-bold cursor-pointer hover:bg-emerald-900 ease-in duration-200 flex gap-2 text-center', props.class)">
+    <slot />
   </button>
 </template>
