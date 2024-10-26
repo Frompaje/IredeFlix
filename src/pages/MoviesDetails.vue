@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import { Youtube,Heart } from "lucide-vue-next";
+import { Youtube, Heart } from "lucide-vue-next";
 import { MoviesService } from "../service/movies";
 import { MovieData } from "../types/movies";
 import { useRoute } from "vue-router";
-
+import Button from "../components/Button.vue";
 
 const movies = ref<MovieData[]>([])
 const route = useRoute()
@@ -13,7 +13,7 @@ const route = useRoute()
 const fetchMovies = async () => {
   try {
     const data = await MoviesService.getMoviesById(Number(route.params.id))
-    console.log( data)
+    console.log(data)
     movies.value = [data]
   } catch (error) {
     console.log(error)
@@ -35,10 +35,13 @@ onMounted(fetchMovies)
           <h1 class="font-bold text-black text-2xl">{{ movie.title }}</h1>
           <p class="font-bold  text-wrap">{{ movie.overview }}</p>
           <div class="flex gap-4">
-              <button  
-              class="bg-emerald-500 p-3 rounded-lg text-white font-bold  cursor-pointer hover:bg-emerald-900 ease-in duration-200 flex gap-2 text-center"> <Youtube/>Trailer</button>
-            <button
-              class="bg-transparent text-emerald-900 font-bold p-3 rounded-lg border-solid border-emerald-500 border-2 hover:bg-emerald-900 ease-in duration-200 flex gap-2 text-center hover:text-white hover:border-white"><Heart /> Favorite</button>
+            <Button>
+              <Youtube />Trailer
+            </Button>
+            <Button
+              class="bg-transparent text-emerald-900  border-solid border-emerald-500 border-2 hover:bg-emerald-900 hover:text-white hover:border-white">
+              <Heart /> Favorite
+            </Button>
           </div>
         </div>
       </div>

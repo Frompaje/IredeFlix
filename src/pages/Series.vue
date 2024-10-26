@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Header from '../components/Header.vue';
 import { onMounted, ref } from "vue";
 import { Play } from "lucide-vue-next";
 import { MovieData } from "../types/movies";
