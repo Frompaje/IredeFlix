@@ -26,24 +26,18 @@ onMounted(fetchMovies)
 </script>
 
 <template>
-  <main class="bg-gradient-to-r from-violet-600 to-indigo-600">
+  <main class="bg-gradient-to-r from-slate-900 to-slate-900 text-white">
     <div v-for="movie in moviesPopular.slice(5, 6)" :key="movie.id">
       <a :href="'movies/' + movie.id">
-        <div class="w-full">
+        <div >
           <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
-            class=" hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
-        </div>
-
-        <div class="flex flex-col items-center relative bottom-24 right-20">
-          <a :href="'movies/' + movie.id">
-            <Button class="pr-5">About Movie</Button>
-          </a>
+            class=" hover:bg-white-500 shadow-lg hover:shadow-purple-500/90 w-full">
         </div>
       </a>
     </div>
 
     <section>
-      <div class="ml-8">
+      <div class="ml-8 pt-8">
         <h1 class="font-bold text-white text-2xl">POPULAR</h1>
       </div>
       <div class="grid grid-cols-2 gap-4 p-4">
