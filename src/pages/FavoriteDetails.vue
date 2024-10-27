@@ -43,20 +43,20 @@ onMounted(fetchMovies);
 <template>
   <main>
     <div class="flex gap-2 justify-center">
-      <div v-for="movie in movies" :key="movie.id">
+      <div v-for="movie in movies" :key="movie.id" class="bg-gradient-to-r from-slate-900 to-slate-900 text-white">
         <div class="w-full flex justify-center items-center">
-          <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="">
+          <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path">
         </div>
 
         <div class="flex justify-center flex-col gap-4 items-center p-4">
-          <h1 class="font-bold text-black text-2xl">{{ movie.title }}</h1>
+          <h1 class="font-bold text-white text-2xl">{{ movie.title }}</h1>
           <p class="font-bold text-wrap">{{ movie.overview }}</p>
           <div class="flex gap-4">
             <Button @click="handleTrailer">
               <Youtube />Trailer
             </Button>
             <div @click="() => removeFavorite(movie)"
-              class="bg-transparent text-emerald-900 hover:text-white hover:border-white">
+              class="bg-transparent text-purple-900 hover:text-white hover:border-white">
               <Button class="flex">
                 Remove
               </Button>

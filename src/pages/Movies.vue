@@ -31,6 +31,7 @@ watch(currentPage, fetchMovies)
 </script>
 
 <template>
+  <div class="bg-gradient-to-r from-violet-600 to-indigo-600">
   <main>
     <div v-for="movie in movies.slice(0)" :key="movie.id" >
       <a :href="'movies/' + movie.id">
@@ -47,8 +48,10 @@ watch(currentPage, fetchMovies)
       </a>
     </div>
   </main>
+
   <footer>
     <Pagination :page="dataPage.page" :total_pages="dataPage.total_pages" :total_results="dataPage.total_results"
       @update:page="currentPage = $event" />
   </footer>
+</div>
 </template>

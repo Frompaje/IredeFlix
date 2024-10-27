@@ -4,39 +4,54 @@ import Button from '../components/Button.vue';
 import { MoviesService } from '../service/movies';
 import { MovieData } from '../types/movies';
 import { Play } from "lucide-vue-next";
+import { SeriesService } from '../service/series';
+import { SeriesData } from '../types/series';
 
 
 const moviesPopular = ref<MovieData[]>([])
+const series = ref<SeriesData[]>([])
 
 const fetchMovies = async () => {
   const data = await MoviesService.listPopularMovies()
   moviesPopular.value = data.results
 };
 
+const fetchSeries = async () => {
+  const data = await SeriesService.listSeries()
+  series.value = data.results
+};
+
+onMounted(fetchSeries)
 onMounted(fetchMovies)
 
 </script>
 
 <template>
   <main class="bg-gradient-to-r from-violet-600 to-indigo-600">
-    <div>
-      <img :src="'https://image.tmdb.org/t/p/w500' + '/Oqlmo1bhDQWWBPrMxMauuHL7y7.jpg'">
-      <div class="relative bottom-28 left-3">
-        <h1 class="font-bold text-white text-2xl">The Demon</h1>
-        <a :href="'movies/' + 1128941">
-          <Button class="pr-5">About Movie</Button>
-        </a>
-      </div>
+    <div v-for="movie in moviesPopular.slice(5, 6)" :key="movie.id">
+      <a :href="'movies/' + movie.id">
+        <div class="w-full flex justify-center  items-center ">
+          <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+            class=" hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
+        </div>
+
+        <div class="flex flex-col items-center relative bottom-24 right-28">
+          <a :href="'movies/' + movie.id">
+            <Button class="pr-5">About Movie</Button>
+          </a>
+        </div>
+      </a>
     </div>
 
     <section>
       <div class="ml-8">
         <h1 class="font-bold text-white text-2xl">POPULAR</h1>
       </div>
-      <div v-for="movie in moviesPopular.slice(15, 20)" :key="movie.id">
+      <div v-for="movie in moviesPopular.slice(10, 15)" :key="movie.id">
         <a :href="'movies/' + movie.id">
           <div class="w-full flex justify-center pb-4 pt-4 items-center ">
-            <img :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path" class="rounded-xl hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
+            <img :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
+              class="rounded-xl hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
           </div>
 
           <div class="flex flex-col items-center">
@@ -51,15 +66,16 @@ onMounted(fetchMovies)
 
     <section>
       <div class="ml-4 flex justify-around">
-        <h1 class="font-bold text-white text-2xl">Movies</h1>
+        <h1 class="font-bold text-white text-2xl">MOVIES</h1>
         <a href="movies/">
           <Button class="pr-5">More movies for you</Button>
         </a>
       </div>
-      <div v-for="movie in moviesPopular.slice(4,9)" :key="movie.id">
+      <div v-for="movie in moviesPopular.slice(7, 11)" :key="movie.id">
         <a :href="'movies/' + movie.id">
           <div class="w-full flex justify-center pb-4 pt-4 items-center ">
-            <img :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path" class="rounded-xl hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
+            <img :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
+              class="rounded-xl hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
           </div>
 
           <div class="flex flex-col items-center">
@@ -73,5 +89,29 @@ onMounted(fetchMovies)
       </div>
     </section>
 
+    <section>
+      <div class="ml-4 flex justify-around">
+        <h1 class="font-bold text-white text-2xl">TV SERIES</h1>
+        <a href="series/">
+          <Button class="pr-5">More serie for you</Button>
+        </a>
+      </div>
+
+      <div v-for="serie in series.slice(4, 19)" :key="serie.id">
+        <a :href="'series/' + serie.id">
+          <div class="w-full flex justify-center pb-4 pt-4 items-center ">
+            <img :src="'https://image.tmdb.org/t/p/w300' + serie.poster_path"
+              class="rounded-xl hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
+          </div>
+
+          <div class="flex flex-col items-center">
+            <span
+              class="relative bottom-10 left-0 rounded-full bg-purple-500 p-2 cursor-pointer transition ease-in-out duration-2000 hover:bg-purple-800">
+              <Play class="text-white" />
+            </span>
+          </div>
+        </a>
+      </div>
+    </section>
   </main>
 </template>

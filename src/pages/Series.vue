@@ -4,18 +4,14 @@ import { Play } from "lucide-vue-next";
 import { MovieData } from "../types/movies";
 import { SeriesService } from '../service/series';
 
-
 const series = ref<MovieData[]>([])
-const fetchMovies = async () => {
-  try {
-    const data = await SeriesService.listSeries()
-    series.value = data.results
-  } catch (error) {
-    console.log(error)
-  }
 
+const fetchSeries = async () => {
+  const data = await SeriesService.listSeries()
+  series.value = data.results
 }
-onMounted(fetchMovies)
+
+onMounted(fetchSeries)
 </script>
 
 <template>
