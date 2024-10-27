@@ -42,7 +42,7 @@ function goToPage(page: number) {
 </script>
 
 <template>
-  <main class="flex w-full">
+  <main class="flex w-full justify-center">
     <Button @click="goToPage(props.page - 1)" :disabled="props.page === 1">
       <SquareArrowLeft />
     </Button>

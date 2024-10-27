@@ -59,13 +59,13 @@ onMounted(fetchSeries)
 
 <template>
   <main>
-    <div class="flex gap-2 justify-center bg-gradient-to-r from-slate-900 to-slate-900 text-white">
+    <div class="flex gap-2 justify-center bg-gradient-to-r from-slate-900 to-slate-900 text-white min-h-svh">
       <div v-for="serie in series" :key="serie.id">
         <div class="w-full flex justify-center items-center">
           <img :src="'https://image.tmdb.org/t/p/w500' + serie.poster_path">
         </div>
 
-        <div class="flex flex-col gap-4 items-center  h-screen pt-5">
+        <div class="flex flex-col gap-4 items-center pt-5">
           <h1 class="font-bold text-2xl text-white">{{ serie.original_name }}</h1>
           <span class="text-xl">Genre: {{ serie.type }}</span>
           <div class="flex flex-col gap-2 text-xl items-center">
