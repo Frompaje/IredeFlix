@@ -37,11 +37,11 @@ watch(currentPage, fetchMovies)
     </div>
 
     <main>
-      <div class="grid grid-cols-2 gap-2 p-2">
+      <div class="grid grid-cols-2 gap-2 p-2  lg:grid-cols-4">
         <div v-for="movie in movies.slice(0)" :key="movie.id">
           <a :href="'movies/' + movie.id">
-            <div class="w-full flex justify-centeritems-center ">
-              <img :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
+            <div class="w-full flex justify-center ">
+              <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
                 class="rounded-xl hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
             </div>
           </a>
@@ -51,7 +51,7 @@ watch(currentPage, fetchMovies)
     </main>
 
     <footer>
-      <Pagination :page="dataPage.page" :total_pages="dataPage.total_pages" :total_results="dataPage.total_results"
+      <Pagination  :page="dataPage.page" :total_pages="dataPage.total_pages" :total_results="dataPage.total_results"
         @update:page="currentPage = $event" />
     </footer>
   </div>

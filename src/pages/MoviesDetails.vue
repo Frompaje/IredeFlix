@@ -65,8 +65,8 @@ onMounted(fetchMovies);
 
 <template>
   <main>
-    <div class="flex gap-2 justify-center bg-gradient-to-r from-slate-900 to-slate-900 text-white">
-      <div v-for="movie in movies" :key="movie.id">
+    <div class="flex gap-2 justify-center bg-gradient-to-r from-slate-900 to-slate-900 text-white  ">
+      <div v-for="movie in movies" :key="movie.id" class="lg:flex lg:h-screen lg:w-2/3">
         <div class="w-full flex justify-center items-center">
           <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="">
         </div>

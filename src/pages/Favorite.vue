@@ -35,7 +35,7 @@ onMounted(listAllFavorites)
       </h1>
     </div>
 
-    <div class="grid grid-cols-2 gap-4 p-4">
+    <div class="grid grid-cols-2 gap-4 p-4 lg:grid-cols-4">
       <div v-for="item in items" :key="item.id">
         <a :href="isTypeOfMovie(item.id) ? 'movies/' + item.id : 'series/' + item.id">
           <div class="w-full flex justify-center items-center">

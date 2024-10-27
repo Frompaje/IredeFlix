@@ -59,8 +59,8 @@ onMounted(fetchMovies)
         </div>
       </div>
 
-      <div class="grid grid-cols-2 gap-4 p-4 hidden lg:flex lg:flex lg:items-center ">
-        <div v-for="movie in moviesPopular.slice(1, 6)" :key="movie.id">
+      <div class="grid grid-cols-2 gap-4 p-4 hidden lg:flex lg:flex lg:items-center lg:justify-center">
+        <div v-for="movie in moviesPopular.slice(1, 7)" :key="movie.id">
           <a :href="'movies/' + movie.id">
             <div class="w-full flex justify-center items-center">
               <img :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
@@ -91,8 +91,8 @@ onMounted(fetchMovies)
         </div>
       </div>
 
-      <div class="grid grid-cols-2 gap-4 p-4 hidden lg:flex lg:flex lg:items-center ">
-        <div v-for="movie in moviesPopular.slice(7, 11)" :key="movie.id">
+      <div class="grid grid-cols-2 gap-4 p-4 hidden lg:flex lg:flex lg:items-center lg:justify-center ">
+        <div v-for="movie in moviesPopular.slice(7, 13)" :key="movie.id">
           <a :href="'movies/' + movie.id">
             <div class="w-full flex justify-center items-center ">
               <img :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
@@ -122,8 +122,8 @@ onMounted(fetchMovies)
         </div>
       </div>
 
-      <div class="grid grid-cols-2 gap-4 p-4 hidden lg:flex lg:flex lg:items-center ">
-        <div v-for="serie in series.slice(14, 18)" :key="serie.id">
+      <div class="grid grid-cols-2 gap-4 p-4 hidden lg:flex lg:flex lg:items-center lg:justify-center ">
+        <div v-for="serie in series.slice(14, 20)" :key="serie.id">
           <a :href="'series/' + serie.id">
             <div class="w-full flex justify-center items-center">
               <img :src="'https://image.tmdb.org/t/p/w300' + serie.poster_path"

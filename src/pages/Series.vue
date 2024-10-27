@@ -8,7 +8,7 @@ import { SeriesService } from "../service/series";
 const series = ref<SeriesData[]>([]);
 const dataPage = ref<PaginationResponse>({
   page: 1,
-  result: series.value,
+  result:[],
   total_pages: 0,
   total_results: 0,
 });
@@ -17,6 +17,8 @@ const currentPage = ref(1);
 
 const fetchSeries = async () => {
   const data = await SeriesService.listSeries(currentPage.value);
+  console.log(data)
+
   dataPage.value.page = data.page;
   dataPage.value.result = data.results;
   dataPage.value.total_pages = data.total_pages;
@@ -36,11 +38,11 @@ watch(currentPage, fetchSeries);
     </div>
 
     <main class="flex-grow p-4">
-      <div class="grid grid-cols-2 gap-2">
+      <div class="grid grid-cols-2 gap-2 lg:grid-cols-4">
         <div v-for="serie in series" :key="serie.id">
           <a :href="'series/' + serie.id">
             <div class="w-full flex justify-center items-center">
-              <img :src="'https://image.tmdb.org/t/p/w300' + serie.poster_path"
+              <img :src="'https://image.tmdb.org/t/p/w500' + serie.poster_path"
                 class="rounded-xl hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
             </div>
           </a>
