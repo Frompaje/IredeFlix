@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue'
 import { MovieData } from '../types/movies'
 import { SeriesData } from '../types/series'
 import { FavoriteItem } from '../types/favorite'
+import FavoriteCard from '../components/FavoriteCard.vue'
 
 const items = ref<(MovieData | SeriesData)[]>([])
 const favorites = JSON.parse(localStorage.getItem('favoritos') || '[]');
@@ -37,12 +38,7 @@ onMounted(listAllFavorites)
 
     <div class="grid grid-cols-2 gap-4 p-4 lg:grid-cols-4">
       <div v-for="item in items" :key="item.id">
-        <a :href="isTypeOfMovie(item.id) ? 'movies/' + item.id : 'series/' + item.id">
-          <div class="w-full flex justify-center items-center">
-            <img :src="'https://image.tmdb.org/t/p/w500' + item.poster_path"
-              class="rounded-xl hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
-          </div>
-        </a>
+        <FavoriteCard :is-type-of-movie="isTypeOfMovie(item.id)" :itemId="item.id" :poster_path="item.poster_path"/>
       </div>
     </div>
   </div>

@@ -60,8 +60,6 @@ function toggleFavorite(data: MovieData) {
 
 }
 
-
-
 const hasFavoriteId = favoritesMoviesId.some((favorite: { id: number }) => favorite.id === Number(route.params.id))
 
 onMounted(fetchMovies);

@@ -39,10 +39,15 @@ const routes = [
     <div v-if="switchMenu" class="relative ">
       <div v-for="route in routes" :key="route.name"
         class="z-50 text-xl flex flex-col bg-purple-900 relative right-5 w-screen rounded top-4  pb-2 ">
+
         <span class="hover:bg-purple-950 p-4 cursos-pointer ">
-          <nav class="w-full">
-            <a class="pr-50 pt-2  pb-2" :href="route.path">
-              {{ route.name }}
+          <nav >
+            <a class="pr-50 pt-3  pb-3" :href="route.path">
+              <ul class="w-full">
+                <li>
+                  {{ route.name }}
+                </li>
+              </ul>
             </a>
           </nav>
         </span>

@@ -5,7 +5,8 @@ import { MoviesService } from '../service/movies';
 import { MovieData } from '../types/movies';
 import { SeriesService } from '../service/series';
 import { SeriesData } from '../types/series';
-
+import MovieCard from '../components/MovieCard.vue';
+import SerieCard from '../components/SerieCard.vue';
 
 const moviesPopular = ref<MovieData[]>([])
 const series = ref<SeriesData[]>([])
@@ -33,13 +34,9 @@ onMounted(fetchMovies)
       <h1 class="font-bold text-white text-2xl ">DISCOVERS</h1>
     </div>
     <div class="flex justify-center items-center space-x-4 "> 
+      
       <div v-for="movie in moviesPopular.slice(5, 8)" :key="movie.id" class="flex flex-col">
-        <a :href="'movies/' + movie.id">
-          <div class="lg:p-8">
-            <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
-              class="hover:bg-white-500 shadow-lg hover:shadow-purple-500/90 w-full lg:rounded-2xl lg:object-cover ">
-          </div>
-        </a>
+        <MovieCard :movie-id="movie.id" :poster_path="movie.poster_path"/>
       </div>
     </div>
   </div>
@@ -48,7 +45,8 @@ onMounted(fetchMovies)
       <div class="ml-8 pt-8 lg:pb-5">
         <h1 class="font-bold text-white text-2xl">POPULAR</h1>
       </div>
-      <div class="grid grid-cols-2 gap-4 p-4  lg:hidden">
+
+      <!-- <div class="grid grid-cols-2 gap-4 p-4  lg:hidden">
         <div v-for="movie in moviesPopular.slice(1, 3)" :key="movie.id">
           <a :href="'movies/' + movie.id">
             <div class="w-full flex justify-center items-center">
@@ -57,19 +55,14 @@ onMounted(fetchMovies)
             </div>
           </a>
         </div>
-      </div>
+
+      </div> -->
 
       <div class="grid grid-cols-2 gap-4 p-4 hidden lg:flex lg:flex lg:items-center lg:justify-center">
         <div v-for="movie in moviesPopular.slice(1, 7)" :key="movie.id">
-          <a :href="'movies/' + movie.id">
-            <div class="w-full flex justify-center items-center">
-              <img :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
-                class="rounded-xl hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
-            </div>
-          </a>
+          <MovieCard :movie-id="movie.id" :poster_path="movie.poster_path"/>
         </div>
       </div>
-      
     </section>
 
     <section>
@@ -93,12 +86,7 @@ onMounted(fetchMovies)
 
       <div class="grid grid-cols-2 gap-4 p-4 hidden lg:flex lg:flex lg:items-center lg:justify-center ">
         <div v-for="movie in moviesPopular.slice(7, 13)" :key="movie.id">
-          <a :href="'movies/' + movie.id">
-            <div class="w-full flex justify-center items-center ">
-              <img :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
-                class="rounded-xl hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
-            </div>
-          </a>
+          <MovieCard :movie-id="movie.id" :poster_path="movie.poster_path"/>
         </div>
       </div>
     </section>
@@ -124,12 +112,7 @@ onMounted(fetchMovies)
 
       <div class="grid grid-cols-2 gap-4 p-4 hidden lg:flex lg:flex lg:items-center lg:justify-center ">
         <div v-for="serie in series.slice(14, 20)" :key="serie.id">
-          <a :href="'series/' + serie.id">
-            <div class="w-full flex justify-center items-center">
-              <img :src="'https://image.tmdb.org/t/p/w300' + serie.poster_path"
-                class="rounded-xl hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
-            </div>
-          </a>
+          <SerieCard :serie-id="serie.id" :poster_path="serie.poster_path"/>
         </div>
       </div>
     </section>

@@ -4,6 +4,7 @@ import { MoviesService } from "../service/movies";
 import { MovieData } from "../types/movies";
 import { PaginationResponse } from "../types/pagination";
 import Pagination from "../components/Pagination.vue";
+import MovieCard from "../components/MovieCard.vue";
 
 const movies = ref<MovieData[]>([])
 const dataPage = ref<PaginationResponse>({
@@ -39,12 +40,7 @@ watch(currentPage, fetchMovies)
     <main>
       <div class="grid grid-cols-2 gap-10 p-10 lg:grid-cols-4">
         <div v-for="movie in movies.slice(0)" :key="movie.id">
-          <a :href="'movies/' + movie.id">
-            <div class="w-full flex justify-center ">
-              <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
-                class="rounded-xl hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
-            </div>
-          </a>
+          <MovieCard :movie-id="movie.id" :poster_path="movie.poster_path"/>
         </div>
       </div>
 
