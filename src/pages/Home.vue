@@ -3,7 +3,6 @@ import { onMounted, ref } from 'vue';
 import Button from '../components/Button.vue';
 import { MoviesService } from '../service/movies';
 import { MovieData } from '../types/movies';
-import { Play } from "lucide-vue-next";
 import { SeriesService } from '../service/series';
 import { SeriesData } from '../types/series';
 
@@ -17,7 +16,7 @@ const fetchMovies = async () => {
 };
 
 const fetchSeries = async () => {
-  const data = await SeriesService.listSeries()
+  const data = await SeriesService.listSeries(3)
   series.value = data.results
 };
 
@@ -48,7 +47,7 @@ onMounted(fetchMovies)
         <h1 class="font-bold text-white text-2xl">POPULAR</h1>
       </div>
       <div class="grid grid-cols-2 gap-4 p-4">
-        <div v-for="movie in moviesPopular.slice(10, 14)" :key="movie.id">
+        <div v-for="movie in moviesPopular.slice(1, 3)" :key="movie.id">
           <a :href="'movies/' + movie.id">
             <div class="w-full flex justify-center items-center">
               <img :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
@@ -87,7 +86,7 @@ onMounted(fetchMovies)
       </div>
 
       <div class="grid grid-cols-2 gap-4 p-4">
-        <div v-for="serie in series.slice(4, 8)" :key="serie.id">
+        <div v-for="serie in series.slice(14,18)" :key="serie.id">
           <a :href="'series/' + serie.id">
             <div class="w-full flex justify-center items-center">
               <img :src="'https://image.tmdb.org/t/p/w300' + serie.poster_path"
@@ -97,6 +96,5 @@ onMounted(fetchMovies)
         </div>
       </div>
     </section>
-
   </main>
 </template>

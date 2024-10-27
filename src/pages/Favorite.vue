@@ -1,22 +1,29 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import { MovieData } from '../types/movies';
-import { Play } from "lucide-vue-next";
+import { onMounted, ref } from 'vue'
+import { MovieData } from '../types/movies'
+import { SeriesData } from '../types/series'
+import { FavoriteItem } from '../types/favorite'
 
-const movies = ref<MovieData[]>([])
-const favorite: MovieData[] = JSON.parse(localStorage.getItem('favoritos') || '[]');
-console.log(favorite.length)
-const listAllFavorite = async () => {
-  favorite.forEach((data) => movies.value.push(data))
-};
+const items = ref<(MovieData | SeriesData)[]>([])
+const favorites = JSON.parse(localStorage.getItem('favoritos') || '[]');
+const favoritesType: FavoriteItem[] = JSON.parse(localStorage.getItem('favoritos_') || '[]');
 
-onMounted(listAllFavorite)
+const listAllFavorites = async () => {
+  favorites.forEach((data: MovieData | SeriesData) => items.value.push(data));
+}
+
+const isTypeOfMovie = (id: number) => {
+  const favoriteItem = favoritesType.find((item) => item.id === id);
+  return favoriteItem ? favoriteItem.type === 'Movies' : false;
+}
+
+onMounted(listAllFavorites)
 </script>
 
 <template>
-  <div class="bg-gradient-to-r from-slate-900 to-slate-900  h-screen ">
+  <div class="bg-gradient-to-r from-slate-900 to-slate-900 min-h-screen">
     <div class="flex justify-center p-4">
-      <h1 v-if="favorite.length === 0" class="font-bold text-white text-2xl text-center">
+      <h1 v-if="items.length === 0" class="font-bold text-white text-2xl text-center">
         That's odd! It looks like you don't have any favorite movies or series.
         <span class="text-purple-500">Let's fix that!</span>
         I recommend watching the movie <span class="text-purple-500">The Prestige.</span>
@@ -29,15 +36,14 @@ onMounted(listAllFavorite)
     </div>
 
     <div class="grid grid-cols-2 gap-4 p-4">
-      <div v-for="movie in movies.slice(0)" :key="movie.id">
-        <a :href="'favorite/' + movie.id">
-          <div class="w-full flex justify-center  items-center">
-            <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+      <div v-for="item in items" :key="item.id">
+        <a :href="isTypeOfMovie(item.id) ? 'movies/' + item.id : 'series/' + item.id">
+          <div class="w-full flex justify-center items-center">
+            <img :src="'https://image.tmdb.org/t/p/w500' + item.poster_path"
               class="rounded-xl hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
           </div>
         </a>
       </div>
     </div>
-
   </div>
 </template>

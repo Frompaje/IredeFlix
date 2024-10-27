@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from "vue";
 import { MoviesService } from "../service/movies";
-import { Play } from "lucide-vue-next";
 import { MovieData } from "../types/movies";
 import { PaginationResponse } from "../types/pagination";
 import Pagination from "../components/Pagination.vue";
@@ -35,8 +34,8 @@ watch(currentPage, fetchMovies)
     <div class="p-4">
       <h1 class="font-bold text-white text-2xl text-center">Movies</h1>
       <p class="text-white text-center">Discover the most popular movies, new releases, and classics.</p>
-    
     </div>
+
     <main>
       <div class="grid grid-cols-2 gap-2 p-2">
         <div v-for="movie in movies.slice(0)" :key="movie.id">

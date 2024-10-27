@@ -1,56 +1,56 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { Play } from "lucide-vue-next";
-import { MovieData } from "../types/movies";
-import { SeriesService } from '../service/series';
+import { onMounted, ref, watch } from "vue";
+import { PaginationResponse } from "../types/pagination";
+import { SeriesData } from "../types/series";
+import Pagination from "../components/Pagination.vue";
+import { SeriesService } from "../service/series";
 
-const series = ref<MovieData[]>([])
+const series = ref<SeriesData[]>([]);
+const dataPage = ref<PaginationResponse>({
+  page: 1,
+  result: series.value,
+  total_pages: 0,
+  total_results: 0,
+});
+
+const currentPage = ref(1);
 
 const fetchSeries = async () => {
-  const data = await SeriesService.listSeries()
-  series.value = data.results
-}
+  const data = await SeriesService.listSeries(currentPage.value);
+  dataPage.value.page = data.page;
+  dataPage.value.result = data.results;
+  dataPage.value.total_pages = data.total_pages;
+  dataPage.value.total_results = data.total_results;
+  series.value = data.results;
+};
 
-onMounted(fetchSeries)
+onMounted(fetchSeries);
+watch(currentPage, fetchSeries);
 </script>
 
 <template>
-  <main>
-    <div class="flex justify-center p-4">
-      <h1 class="font-bold text-black text-2xl">Destaque da <span class="text-emerald-700">Semana!</span></h1>
+  <div class="bg-gradient-to-r from-violet-600 to-indigo-600 flex flex-col">
+    <div class="p-4">
+      <h1 class="font-bold text-white text-2xl text-center">TV Series</h1>
+      <p class="text-white text-center">Discover the best TV series, latest episodes, and timeless favorites.</p>
     </div>
 
-    <div class="flex gap-4 p-3">
-      <div v-for="serie in series.slice(0, 3)" :key="serie.id">
-        <div class="w-full flex justify-center pb-4 pt-4 items-center ">
-          <img :src="'https://image.tmdb.org/t/p/w200' + serie.poster_path" alt="" class="rounded-xl">
-        </div>
-
-        <div class="flex flex-col  items-center  ">
-          <div
-            class="relative bottom-10 left-0 rounded-full bg-emerald-500 p-2 cursor-pointer transition ease-in-out duration-2000 hover:bg-emerald-800">
-            <Play class="text-white" />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="flex justify-center p-4">
-      <h1 class="font-bold text-black text-2xl">Assista Também!</h1>
-    </div>
-    <div v-for="serie in series.slice(4, 19)" :key="serie.id">
-      <div class="w-full flex justify-center pb-4 pt-4 items-center  ">
-        <img :src="'https://image.tmdb.org/t/p/w200' + serie.poster_path" alt="" class="rounded-xl">
-
-      </div>
-
-      <div class="flex flex-col  items-center  ">
-        <div
-          class="relative bottom-10 left-0 rounded-full bg-emerald-500 p-2 cursor-pointer transition ease-in-out duration-2000 hover:bg-emerald-800">
-          <Play class="text-white" />
+    <main class="flex-grow p-4">
+      <div class="grid grid-cols-2 gap-2">
+        <div v-for="serie in series" :key="serie.id">
+          <a :href="'series/' + serie.id">
+            <div class="w-full flex justify-center items-center">
+              <img :src="'https://image.tmdb.org/t/p/w300' + serie.poster_path"
+                class="rounded-xl hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
+            </div>
+          </a>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
 
+    <footer class="p-4">
+      <Pagination :page="dataPage.page" :total_pages="dataPage.total_pages" :total_results="dataPage.total_results"
+        @update:page="currentPage = $event" />
+    </footer>
+  </div>
 </template>

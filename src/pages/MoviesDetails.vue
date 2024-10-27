@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { onMounted, ref, toValue } from "vue";
-import { Youtube, Heart, X } from "lucide-vue-next";
+import { onMounted, ref } from "vue";
+import { Youtube } from "lucide-vue-next";
 import { MoviesService } from "../service/movies";
 import { MovieData } from "../types/movies";
 import { useRoute } from "vue-router";
@@ -37,26 +37,28 @@ const handleMovieFavorite = async (data: MovieData) => {
 };
 
 
-
 function toggleFavorite(data: MovieData) {
 
   if (favoritesMoviesId.includes(data.id)) {
     const updatedFavoriteId = favoritesMoviesId.filter((id: number) => id !== data.id);
     const updatedFavoriteMovies = movies.value.filter((movie) => movie.id !== data.id)
 
-    localStorage.setItem("favoritos_", JSON.stringify(updatedFavoriteMovies))
+    localStorage.setItem("favoritos_", JSON.stringify({id:updatedFavoriteMovies, type:"Movie"}))
     localStorage.setItem("favoritos", JSON.stringify(updatedFavoriteId))
     window.location.reload()
     return
   }
 
-  favoritesMoviesId.push(data.id)
+  favoritesMoviesId.push({ id: data.id, type: "Movies" })
   localStorage.setItem('favoritos_', JSON.stringify(favoritesMoviesId));
 
   window.location.reload()
 
 }
-const hasFavoriteId = favoritesMoviesId.includes(Number(route.params.id))
+
+
+
+const hasFavoriteId = favoritesMoviesId.some((favorite: { id: number }) => favorite.id === Number(route.params.id))
 
 onMounted(fetchMovies);
 </script>

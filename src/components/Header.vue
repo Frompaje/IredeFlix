@@ -18,7 +18,7 @@ const routes = [
 </script>
 
 <template>
-  <header class="p-8 bg-purple-800 text-white w-full">
+  <header class="p-4 bg-purple-800 text-white w-full">
     <button @click="toggleValue">
       <AlignJustify v-if="!switchMenu" />
       <X v-if="switchMenu" />
@@ -28,10 +28,10 @@ const routes = [
     <div v-if="switchMenu" class="absolute">
 
       <div v-for="route in routes" :key="route.name"
-        class="z-50 text-xl flex flex-col bg-purple-900 relative right-10 w-screen rounded top-8 ">
+        class="z-50 text-xl flex flex-col bg-purple-900 relative right-5 w-screen rounded top-4 ">
         <span class="hover:bg-purple-950 p-4 cursos-pointer w-full">
           <nav>
-            <a class="pr-72 pt-2 pb-2" :href="route.path">
+            <a class="pr-50 pt-2 pb-2" :href="route.path">
               {{ route.name }}
             </a>
           </nav>
