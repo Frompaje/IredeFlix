@@ -36,34 +36,23 @@ const emit = defineEmits(['update:page']);
 
 function goToPage(page: number) {
   if (page >= 1 && page <= props.total_pages) {
-    emit('update:page', page); 
+    emit('update:page', page);
   }
 }
 </script>
 
 <template>
-  <main class="flex text-center w-full justify-between p-2 pt-5">
-    <Button 
-      @click="goToPage(props.page - 1)" 
-      :disabled="props.page === 1" 
-     
-    >
+  <main class="flex w-full">
+    <Button @click="goToPage(props.page - 1)" :disabled="props.page === 1">
       <SquareArrowLeft />
     </Button>
 
-    <Button
-      v-for="page in visiblePages"
-      :key="page"
-      @click="goToPage(page)"
-      :class="`pr-6 pl-7  ${page === props.page ? 'opacity-50 cursor-not-allowed' : ''}`"
-    >
+    <Button v-for="page in visiblePages" :key="page" @click="goToPage(page)"
+      :class="`pr-6 pl-7  ${page === props.page ? 'opacity-50 cursor-not-allowed' : ''}`">
       {{ page }}
     </Button>
 
-    <Button 
-      @click="goToPage(props.page + 1)" 
-      :disabled="props.page === props.total_pages" 
-    >
+    <Button @click="goToPage(props.page + 1)" :disabled="props.page === props.total_pages">
       <SquareArrowRight />
     </Button>
   </main>
