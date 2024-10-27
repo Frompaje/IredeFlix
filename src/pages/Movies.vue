@@ -38,7 +38,7 @@ watch(currentPage, fetchMovies)
     </div>
 
     <main>
-      <div class="grid grid-cols-2 gap-10 p-10 lg:grid-cols-4">
+      <div class="grid grid-cols-2 gap-5 p-5 lg:grid-cols-4">
         <div v-for="movie in movies.slice(0)" :key="movie.id">
           <MovieCard :movie-id="movie.id" :poster_path="movie.poster_path"/>
         </div>

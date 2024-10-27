@@ -64,7 +64,7 @@ onMounted(fetchSeries)
 
       <div v-for="serie in series" :key="serie.id" class="flex flex-col lg:flex-row items-center lg:gap-8">
         <div class="flex justify-center w-full ">
-          <img :src="'https://image.tmdb.org/t/p/w500' + serie.poster_path" class="w-[40rem] h-[36rem] rounded-xl">
+          <img :src="'https://image.tmdb.org/t/p/w500' + serie.poster_path" class="w-[40rem] h-[36rem] lg:rounded-xl">
         </div>
 
         <div class="flex flex-col gap-4 items-center lg:items-start lg:pl-5 w-full lg:w-1/2">

@@ -39,7 +39,7 @@ watch(currentPage, fetchSeries);
     </div>
 
     <main class="flex-grow p-4">
-      <div class="grid grid-cols-2 gap-10 p-10 lg:grid-cols-4">
+      <div class="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <div v-for="serie in series" :key="serie.id">
           <SerieCard :serie-id="serie.id" :poster_path="serie.poster_path"/>
         </div>
