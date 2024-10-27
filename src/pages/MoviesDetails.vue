@@ -26,8 +26,8 @@ const handleTrailer = async () => {
 
 const handleMovieFavorite = async (data: MovieData) => {
   const movies: MovieData[] = JSON.parse(localStorage.getItem('favoritos') || '[]');
-  const isFavorite = movies.some((movie: MovieData) => movie.id === data.id);
 
+  const isFavorite = movies.some((movie: MovieData) => movie.id === data.id);
   if (isFavorite) {
     return
   }
@@ -38,20 +38,24 @@ const handleMovieFavorite = async (data: MovieData) => {
 
 
 function toggleFavorite(data: MovieData) {
+  let movies: MovieData[] = JSON.parse(localStorage.getItem('favoritos') || '[]');
+  const hasFavoriteType = favoritesMoviesId.some((value: MovieData) => value.id === data.id)
+  const hasFavoriteContent = movies.some((movie: MovieData) => movie.id === data.id);
 
-  if (favoritesMoviesId.includes(data.id)) {
-    const updatedFavoriteId = favoritesMoviesId.filter((id: number) => id !== data.id);
-    const updatedFavoriteMovies = movies.value.filter((movie) => movie.id !== data.id)
+  if (hasFavoriteContent && hasFavoriteType ) {
+    favoritesMoviesId = favoritesMoviesId.filter((value: MovieData) => value.id !== data.id)
+    movies = movies.filter((value: MovieData) => value.id !== data.id)
+    
 
-    localStorage.setItem("favoritos_", JSON.stringify({id:updatedFavoriteMovies, type:"Movie"}))
-    localStorage.setItem("favoritos", JSON.stringify(updatedFavoriteId))
+    localStorage.setItem('favoritos_', JSON.stringify(favoritesMoviesId));
+    localStorage.setItem('favoritos', JSON.stringify(movies));
     window.location.reload()
     return
   }
+   
 
   favoritesMoviesId.push({ id: data.id, type: "Movies" })
   localStorage.setItem('favoritos_', JSON.stringify(favoritesMoviesId));
-
   window.location.reload()
 
 }

@@ -18,37 +18,38 @@ const fetchSeries = async () => {
 };
 
 const handleSeriesFavorite = async (data: SeriesData) => {
-  const seriesList: SeriesData[] = JSON.parse(localStorage.getItem('favoritos') || '[]')
-  const isFavorite = seriesList.some((serie: SeriesData) => serie.id === data.id)
+  const series: SeriesData[] = JSON.parse(localStorage.getItem('favoritos') || '[]');
 
+  const isFavorite = series.some((serie: SeriesData) => serie.id === data.id);
   if (isFavorite) {
     return
   }
 
-  seriesList.push(data)
-  localStorage.setItem('favoritos', JSON.stringify(seriesList))
+  series.push(data);
+  localStorage.setItem('favoritos', JSON.stringify(series));
 };
 
 
-
 function toggleFavorite(data: SeriesData) {
-  if (favoritesSeriesId.some((favorite: { id: number }) => favorite.id === data.id)) {
-    const updatedFavoriteSeries = series.value.filter((serie) => serie.id !== data.id)
-    
-    localStorage.setItem("favoritos_", JSON.stringify(updatedFavoriteSeries))
-    localStorage.setItem("favoritos", JSON.stringify(updatedFavoriteSeries))
+  let series: SeriesData[] = JSON.parse(localStorage.getItem('favoritos') || '[]');
+  const hasFavoriteType = favoritesSeriesId.some((value: SeriesData) => value.id === data.id)
+  const hasFavoriteContent = series.some((movie: SeriesData) => movie.id === data.id);
+
+  if (hasFavoriteContent && hasFavoriteType) {
+    favoritesSeriesId = favoritesSeriesId.filter((value: SeriesData) => value.id !== data.id)
+    series = series.filter((value: SeriesData) => value.id !== data.id)
+
+
+    localStorage.setItem('favoritos_', JSON.stringify(favoritesSeriesId));
+    localStorage.setItem('favoritos', JSON.stringify(series));
     window.location.reload()
     return
   }
 
+
   favoritesSeriesId.push({ id: data.id, type: "Series" })
-  localStorage.setItem('favoritos_', JSON.stringify(favoritesSeriesId))
-
+  localStorage.setItem('favoritos_', JSON.stringify(favoritesSeriesId));
   window.location.reload()
-}
-
-const redirectToHomepage = (url: string) => {
-  window.open(url, '_blank')
 }
 
 const hasFavoriteId = favoritesSeriesId.some((favorite: { id: number }) => favorite.id === Number(route.params.id))
@@ -61,32 +62,34 @@ onMounted(fetchSeries)
     <div class="flex gap-2 justify-center bg-gradient-to-r from-slate-900 
     to-slate-900 text-white min-h-svh lg:justify-center w-full">
 
-        <div v-for="serie in series" :key="serie.id" class="flex flex-col lg:flex-row items-center lg:gap-8">
-          <div class="flex justify-center w-full ">
-            <img :src="'https://image.tmdb.org/t/p/w500' + serie.poster_path"  class="w-[40rem] h-[36rem] rounded-xl">
-          </div>
+      <div v-for="serie in series" :key="serie.id" class="flex flex-col lg:flex-row items-center lg:gap-8">
+        <div class="flex justify-center w-full ">
+          <img :src="'https://image.tmdb.org/t/p/w500' + serie.poster_path" class="w-[40rem] h-[36rem] rounded-xl">
+        </div>
 
-          <div class="flex flex-col gap-4 items-center lg:items-start lg:pl-5 w-full lg:w-1/2">
-            <h1 class="font-bold text-2xl text-white">{{ serie.original_name }}</h1>
-            <span class="text-xl">Genre: {{ serie.type }}</span>
-            <div class="flex flex-col gap-2 text-xl items-center lg:items-start">
-              <span>Total Seasons: {{ serie.number_of_seasons }}</span>
-              <span>Total Episodes: {{ serie.number_of_episodes }}</span>
-            </div>
-            <div class="flex gap-4">
-              <Button @click="redirectToHomepage(serie.homepage)">
+        <div class="flex flex-col gap-4 items-center lg:items-start lg:pl-5 w-full lg:w-1/2">
+          <h1 class="font-bold text-2xl text-white">{{ serie.original_name }}</h1>
+          <span class="text-xl">Genre: {{ serie.type }}</span>
+          <div class="flex flex-col gap-2 text-xl items-center lg:items-start">
+            <span>Total Seasons: {{ serie.number_of_seasons }}</span>
+            <span>Total Episodes: {{ serie.number_of_episodes }}</span>
+          </div>
+          <div class="flex gap-4">
+            <a :href="serie.homepage" target="_blank">
+              <Button>
                 <House />Homepage
               </Button>
+            </a>
 
-              <div @click="() => toggleFavorite(serie)"
-                class="bg-transparent text-emerald-900 hover:text-white hover:border-white">
-                <Button class="flex" @click="() => handleSeriesFavorite(serie)">
-                  {{ hasFavoriteId ? "Remove" : "Favorite" }}
-                </Button>
-              </div>
+            <div @click="() => toggleFavorite(serie)"
+              class="bg-transparent text-emerald-900 hover:text-white hover:border-white">
+              <Button class="flex" @click="() => handleSeriesFavorite(serie)">
+                {{ hasFavoriteId ? "Remove" : "Favorite" }}
+              </Button>
             </div>
           </div>
         </div>
       </div>
+    </div>
   </main>
 </template>
