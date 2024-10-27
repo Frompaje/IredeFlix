@@ -32,26 +32,28 @@ watch(currentPage, fetchMovies)
 
 <template>
   <div class="bg-gradient-to-r from-violet-600 to-indigo-600">
-  <main>
-    <div v-for="movie in movies.slice(0)" :key="movie.id" >
-      <a :href="'movies/' + movie.id">
-        <div class="w-full flex justify-center pb-4 pt-4 items-center ">
-          <img :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path" class="rounded-xl">
-        </div>
-
-        <div class="flex flex-col items-center">
-          <span
-            class="relative bottom-10 left-0 rounded-full bg-purple-500 p-2 cursor-pointer transition ease-in-out duration-2000 hover:bg-purple-800">
-            <Play class="text-white" />
-          </span>
-        </div>
-      </a>
+    <div class="p-4">
+      <h1 class="font-bold text-white text-2xl text-center">Movies</h1>
+      <p class="text-white text-center">Discover the most popular movies, new releases, and classics.</p>
+    
     </div>
-  </main>
+    <main>
+      <div class="grid grid-cols-2 gap-2 p-2">
+        <div v-for="movie in movies.slice(0)" :key="movie.id">
+          <a :href="'movies/' + movie.id">
+            <div class="w-full flex justify-centeritems-center ">
+              <img :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
+                class="rounded-xl hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
+            </div>
+          </a>
+        </div>
+      </div>
 
-  <footer>
-    <Pagination :page="dataPage.page" :total_pages="dataPage.total_pages" :total_results="dataPage.total_results"
-      @update:page="currentPage = $event" />
-  </footer>
-</div>
+    </main>
+
+    <footer>
+      <Pagination :page="dataPage.page" :total_pages="dataPage.total_pages" :total_results="dataPage.total_results"
+        @update:page="currentPage = $event" />
+    </footer>
+  </div>
 </template>

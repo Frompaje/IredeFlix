@@ -30,12 +30,12 @@ onMounted(fetchMovies)
   <main class="bg-gradient-to-r from-violet-600 to-indigo-600">
     <div v-for="movie in moviesPopular.slice(5, 6)" :key="movie.id">
       <a :href="'movies/' + movie.id">
-        <div class="w-full flex justify-center  items-center ">
+        <div class="w-full">
           <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
             class=" hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
         </div>
 
-        <div class="flex flex-col items-center relative bottom-24 right-28">
+        <div class="flex flex-col items-center relative bottom-24 right-20">
           <a :href="'movies/' + movie.id">
             <Button class="pr-5">About Movie</Button>
           </a>
@@ -47,71 +47,56 @@ onMounted(fetchMovies)
       <div class="ml-8">
         <h1 class="font-bold text-white text-2xl">POPULAR</h1>
       </div>
-      <div v-for="movie in moviesPopular.slice(10, 15)" :key="movie.id">
-        <a :href="'movies/' + movie.id">
-          <div class="w-full flex justify-center pb-4 pt-4 items-center ">
-            <img :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
-              class="rounded-xl hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
-          </div>
-
-          <div class="flex flex-col items-center">
-            <span
-              class="relative bottom-10 left-0 rounded-full bg-purple-500 p-2 cursor-pointer transition ease-in-out duration-2000 hover:bg-purple-800">
-              <Play class="text-white" />
-            </span>
-          </div>
-        </a>
+      <div class="grid grid-cols-2 gap-4 p-4">
+        <div v-for="movie in moviesPopular.slice(10, 14)" :key="movie.id">
+          <a :href="'movies/' + movie.id">
+            <div class="w-full flex justify-center items-center">
+              <img :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
+                class="rounded-xl hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
+            </div>
+          </a>
+        </div>
       </div>
     </section>
 
     <section>
-      <div class="ml-4 flex justify-around">
+      <div class="flex items-center flex-col w-full gap-2 pt-7">
         <h1 class="font-bold text-white text-2xl">MOVIES</h1>
         <a href="movies/">
           <Button class="pr-5">More movies for you</Button>
         </a>
       </div>
-      <div v-for="movie in moviesPopular.slice(7, 11)" :key="movie.id">
-        <a :href="'movies/' + movie.id">
-          <div class="w-full flex justify-center pb-4 pt-4 items-center ">
-            <img :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
-              class="rounded-xl hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
-          </div>
-
-          <div class="flex flex-col items-center">
-            <span
-              class="relative bottom-10 left-0 rounded-full bg-purple-500 p-2 cursor-pointer transition ease-in-out duration-2000 hover:bg-purple-800">
-              <Play class="text-white" />
-            </span>
-          </div>
-
-        </a>
+      <div class="grid grid-cols-2 gap-4 p-4">
+        <div v-for="movie in moviesPopular.slice(7, 11)" :key="movie.id">
+          <a :href="'movies/' + movie.id">
+            <div class="w-full flex justify-center items-center ">
+              <img :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
+                class="rounded-xl hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
+            </div>
+          </a>
+        </div>
       </div>
     </section>
 
     <section>
-      <div class="ml-4 flex justify-around">
+      <div class="flex items-center flex-col w-full gap-2 pt-7">
         <h1 class="font-bold text-white text-2xl">TV SERIES</h1>
         <a href="series/">
-          <Button class="pr-5">More serie for you</Button>
+          <Button class="pr-5">More series for you</Button>
         </a>
       </div>
 
-      <div v-for="serie in series.slice(4, 19)" :key="serie.id">
-        <a :href="'series/' + serie.id">
-          <div class="w-full flex justify-center pb-4 pt-4 items-center ">
-            <img :src="'https://image.tmdb.org/t/p/w300' + serie.poster_path"
-              class="rounded-xl hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
-          </div>
-
-          <div class="flex flex-col items-center">
-            <span
-              class="relative bottom-10 left-0 rounded-full bg-purple-500 p-2 cursor-pointer transition ease-in-out duration-2000 hover:bg-purple-800">
-              <Play class="text-white" />
-            </span>
-          </div>
-        </a>
+      <div class="grid grid-cols-2 gap-4 p-4">
+        <div v-for="serie in series.slice(4, 8)" :key="serie.id">
+          <a :href="'series/' + serie.id">
+            <div class="w-full flex justify-center items-center">
+              <img :src="'https://image.tmdb.org/t/p/w300' + serie.poster_path"
+                class="rounded-xl hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
+            </div>
+          </a>
+        </div>
       </div>
     </section>
+
   </main>
 </template>

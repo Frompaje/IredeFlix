@@ -42,11 +42,11 @@ function goToPage(page: number) {
 </script>
 
 <template>
-  <main class="flex text-center w-full justify-between pr-4 pl-4 pb-3">
+  <main class="flex text-center w-full justify-between p-2 pt-5">
     <Button 
       @click="goToPage(props.page - 1)" 
       :disabled="props.page === 1" 
-      class="max-w-28"
+     
     >
       <SquareArrowLeft />
     </Button>
@@ -55,7 +55,7 @@ function goToPage(page: number) {
       v-for="page in visiblePages"
       :key="page"
       @click="goToPage(page)"
-      :class="`pr-8 pl-8 ${page === props.page ? 'opacity-50 cursor-not-allowed' : ''}`"
+      :class="`pr-6 pl-7  ${page === props.page ? 'opacity-50 cursor-not-allowed' : ''}`"
     >
       {{ page }}
     </Button>
@@ -63,7 +63,6 @@ function goToPage(page: number) {
     <Button 
       @click="goToPage(props.page + 1)" 
       :disabled="props.page === props.total_pages" 
-      class="max-w-28"
     >
       <SquareArrowRight />
     </Button>
