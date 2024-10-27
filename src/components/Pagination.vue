@@ -54,8 +54,8 @@ function goToPage(page: number) {
     <Button
       v-for="page in visiblePages"
       :key="page"
-      class="p-4"
       @click="goToPage(page)"
+      :class="`pr-8 pl-8 ${page === props.page ? 'opacity-50 cursor-not-allowed' : ''}`"
     >
       {{ page }}
     </Button>
