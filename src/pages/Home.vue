@@ -28,16 +28,38 @@ onMounted(fetchMovies)
         </a>
       </div>
     </div>
-    
+
     <section>
       <div class="ml-8">
         <h1 class="font-bold text-white text-2xl">POPULAR</h1>
       </div>
-
-      <div v-for="movie in moviesPopular.slice(1, 3)" :key="movie.id">
+      <div v-for="movie in moviesPopular.slice(15, 20)" :key="movie.id">
         <a :href="'movies/' + movie.id">
           <div class="w-full flex justify-center pb-4 pt-4 items-center ">
-            <img :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path" class="rounded-xl">
+            <img :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path" class="rounded-xl hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
+          </div>
+
+          <div class="flex flex-col items-center">
+            <span
+              class="relative bottom-10 left-0 rounded-full bg-purple-500 p-2 cursor-pointer transition ease-in-out duration-2000 hover:bg-purple-800">
+              <Play class="text-white" />
+            </span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <div class="ml-4 flex justify-around">
+        <h1 class="font-bold text-white text-2xl">Movies</h1>
+        <a href="movies/">
+          <Button class="pr-5">More movies for you</Button>
+        </a>
+      </div>
+      <div v-for="movie in moviesPopular.slice(4,9)" :key="movie.id">
+        <a :href="'movies/' + movie.id">
+          <div class="w-full flex justify-center pb-4 pt-4 items-center ">
+            <img :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path" class="rounded-xl hover:bg-white-500 shadow-lg hover:shadow-purple-500/90">
           </div>
 
           <div class="flex flex-col items-center">
