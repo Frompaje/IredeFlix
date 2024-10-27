@@ -1,5 +1,14 @@
-# Primeiro baixe as dependencia  
+FROM node:latest
+
+WORKDIR /app
+
+COPY package.json ./
+COPY package-lock.json ./ 
+
 RUN npm install
 
-# Para inicializar o projeto use 
-RUN npm run dev
+COPY . .
+
+RUN npm run build
+
+CMD ["npm", "run", "dev"]
