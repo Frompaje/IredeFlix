@@ -31,7 +31,7 @@ watch(currentPage, fetchSeries);
 </script>
 
 <template>
-  <div class="bg-gradient-to-r from-violet-600 to-indigo-600 flex flex-col">
+  <div class="bg-gradient-to-r from-slate-900 to-slate-900 text-white flex flex-col">
     <div class="p-4">
       <h1 class="font-bold text-white text-2xl text-center">TV Series</h1>
       <p class="text-white text-center">Discover the best TV series, latest episodes, and timeless favorites.</p>

@@ -30,7 +30,7 @@ watch(currentPage, fetchMovies)
 </script>
 
 <template>
-  <div class="bg-gradient-to-r from-violet-600 to-indigo-600">
+  <div class="bg-gradient-to-r from-slate-900 to-slate-900 text-white">
     <div class="p-4">
       <h1 class="font-bold text-white text-2xl text-center">Movies</h1>
       <p class="text-white text-center">Discover the most popular movies, new releases, and classics.</p>
