@@ -29,25 +29,25 @@ onMounted(fetchMovies)
 <template>
   <main class="bg-gradient-to-r from-slate-900 to-slate-900 text-white">
     <div class=" lg:flex flex-col p-2">
-    <div class="ml-8 pt-8 lg:flex pb-5">
-      <h1 class="font-bold text-white text-2xl ">DISCOVERS</h1>
-    </div>
+      <div class="ml-8 pt-8 lg:flex pb-5">
+        <h1 class="font-bold text-white text-2xl ">DISCOVERS</h1>
+      </div>
 
-    <div class="flex justify-center items-center space-x-4 "> 
-      <div v-for="movie in moviesPopular.slice(5, 8)" :key="movie.id" class="flex flex-col">
-        <MovieCard :movie-id="movie.id" :poster_path="movie.poster_path"/>
+      <div class="flex justify-center items-center space-x-4 ">
+        <div v-for="movie in moviesPopular.slice(5, 8)" :key="movie.id" class="flex flex-col">
+          <MovieCard :movie-id="movie.id" :poster_path="movie.poster_path" />
+        </div>
       </div>
     </div>
-  </div>
 
     <section>
       <div class="ml-8 pt-8 lg:pb-5">
         <h1 class="font-bold text-white text-2xl">POPULAR</h1>
       </div>
 
-      <div class="grid grid-cols-2 gap-4 p-4    lg:items-center lg:justify-center">
+      <div class="grid grid-cols-2 gap-4 p-4  flex lg:flex lg:items-center lg:justify-center ">
         <div v-for="movie in moviesPopular.slice(1, 7)" :key="movie.id">
-          <MovieCard :movie-id="movie.id" :poster_path="movie.poster_path"/>
+          <MovieCard :movie-id="movie.id" :poster_path="movie.poster_path" />
         </div>
       </div>
     </section>
@@ -62,7 +62,7 @@ onMounted(fetchMovies)
 
       <div class="grid grid-cols-2 gap-4 p-4  flex lg:flex lg:items-center lg:justify-center ">
         <div v-for="movie in moviesPopular.slice(7, 13)" :key="movie.id">
-          <MovieCard :movie-id="movie.id" :poster_path="movie.poster_path"/>
+          <MovieCard :movie-id="movie.id" :poster_path="movie.poster_path" />
         </div>
       </div>
     </section>
@@ -77,7 +77,7 @@ onMounted(fetchMovies)
 
       <div class="grid grid-cols-2 gap-4 p-4  lg:flex lg:flex lg:items-center lg:justify-center ">
         <div v-for="serie in series.slice(14, 20)" :key="serie.id">
-          <SerieCard :serie-id="serie.id" :poster_path="serie.poster_path"/>
+          <SerieCard :serie-id="serie.id" :poster_path="serie.poster_path" />
         </div>
       </div>
     </section>
