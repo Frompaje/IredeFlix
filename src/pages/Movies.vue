@@ -1,26 +1,14 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import { Play } from "lucide-vue-next";
 import { MoviesService } from "../service/movies";
+import { Play } from "lucide-vue-next";
 import { MovieData } from "../types/movies";
-import { RouterLink } from "vue-router";
-
 
 const movies = ref<MovieData[]>([])
+
 const fetchMovies = async () => {
-  try {
-    const data = await MoviesService.listMovies()
-    movies.value = data.results
-  } catch (error) {
-    console.log(error)
-  }
-
-}
-
-const handleSubmite = async (movie: MovieData) => {
-  console.log(movie.id)
-  // const data = await MoviesService.getMoviesById(movie.id)
-  // return data;;
+  const data = await MoviesService.listMovies()
+  movies.value = data.results
 }
 
 onMounted(fetchMovies)
@@ -28,12 +16,12 @@ onMounted(fetchMovies)
 
 <template>
   <main>
-    <div class="flex justify-center p-4 ">
+    <div class="flex justify-center p-4">
       <h1 class="font-bold text-black text-2xl">Destaque da <span class="text-emerald-700">Semana!</span></h1>
     </div>
-    <div class="flex gap-2 justify-center">
-      <div v-for="movie in movies.slice(0, 3)" :key="movie.id">
-        <a :href="'movies/' + movie.id" @:click="handleSubmite(movie)">
+    <div class="flex gap-2 justify-center p-4">
+      <div v-for="movie in movies.slice(0, 2)" :key="movie.id">
+        <a :href="'movies/' + movie.id">
           <div class="w-full flex justify-center pb-4 pt-4 items-center ">
             <img :src="'https://image.tmdb.org/t/p/w200' + movie.poster_path" alt="" class="rounded-xl">
           </div>
@@ -53,7 +41,7 @@ onMounted(fetchMovies)
       <h1 class="font-bold text-black text-2xl">Assista Também!</h1>
     </div>
     <div v-for="movie in movies.slice(4, 19)" :key="movie.id" class="w-full flex justify-center pb-4 pt-4 items-center">
-      <button @:click="handleSubmite(movie)">
+      <button>
         <div>
           <img :src="'https://image.tmdb.org/t/p/w200' + movie.poster_path" alt="" class="rounded-xl">
         </div>

@@ -3,6 +3,8 @@ import Series from "../pages/Series.vue";
 import Movies from "../pages/Movies.vue";
 import MoviesDetails from "../pages/MoviesDetails.vue";
 import { createRouter, createWebHistory } from "vue-router";
+import Favorite from "../pages/Favorite.vue";
+import FavoriteDetails from "../pages/FavoriteDetails.vue";
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -10,7 +12,8 @@ export const router = createRouter({
     { path: "/", name: "Home", component: Home },
     { path: "/series", name: "Series", component: Series },
     { path: "/movies", name: "Movies", component: Movies },
-    { path: "/favorite", name: "Favorite", component: Series },
-    { path: "/movies/:id", component: MoviesDetails, props: true }
+    { path: "/movies/:id", component: MoviesDetails, props: true },
+    { path: "/favorite", name: "Favorite", component: Favorite },
+    { path: "/favorite/:id", component: FavoriteDetails },
   ]
 })
