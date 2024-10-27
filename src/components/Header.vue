@@ -14,17 +14,17 @@ const routes = [
   { path: "/movies", name: "Movies" },
   { path: "/favorite", name: "Favorite" }
 ];
-
-
 </script>
 
 <template>
   <header class="p-4 bg-purple-800 text-white w-full lg:flex ">
     <div class="hidden lg:flex ml-4 text-3xl  font-bold">
-      <a href="/"><h1>Irede<span class="text-purple-500">Flix</span></h1></a>
-      <div v-for="route in routes" :key="route.name" class="ml-5 text-center" >
-        <nav class="flex flex-row space-x-4"> 
-          <a class="text-lg hover:underline mt-2" :href="route.path"> 
+      <a href="/">
+        <h1>Irede<span class="text-purple-500">Flix</span></h1>
+      </a>
+      <div v-for="route in routes" :key="route.name" class="ml-5 text-center">
+        <nav class="flex flex-row space-x-4">
+          <a class="text-lg hover:underline mt-2" :href="route.path">
             {{ route.name }}
           </a>
         </nav>
@@ -50,7 +50,7 @@ const routes = [
       </div>
     </div>
 
-   
+
 
   </header>
 </template>
