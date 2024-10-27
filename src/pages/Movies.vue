@@ -37,7 +37,7 @@ watch(currentPage, fetchMovies)
     </div>
 
     <main>
-      <div class="grid grid-cols-2 gap-2 p-2  lg:grid-cols-4">
+      <div class="grid grid-cols-2 gap-10 p-10 lg:grid-cols-4">
         <div v-for="movie in movies.slice(0)" :key="movie.id">
           <a :href="'movies/' + movie.id">
             <div class="w-full flex justify-center ">

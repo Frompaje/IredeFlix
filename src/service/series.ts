@@ -6,7 +6,6 @@ export class SeriesService {
       params: {
         page,
         api_key: "db54934853c9ec1bc9926f2ca56bc80e",
-        language: "pt-BR"
       }
     })
 
@@ -17,7 +16,6 @@ export class SeriesService {
     const response = await API.get(`/tv/${id}`, {
       params: {
         api_key: "db54934853c9ec1bc9926f2ca56bc80e",
-        language: "pt-BR"
       }
     })
     console.log(response.data)
@@ -29,7 +27,6 @@ export class SeriesService {
     const response = await API.get(`tv/${id}/season/1/episode/1/videos`, {
       params: {
         api_key: "db54934853c9ec1bc9926f2ca56bc80e",
-        language: "pt-BR"
       }
     })
 

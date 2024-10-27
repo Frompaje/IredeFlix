@@ -6,7 +6,6 @@ export class MoviesService {
       params: {
         page,
         api_key: "db54934853c9ec1bc9926f2ca56bc80e",
-        language: "pt-BR"
       }
     })
 
@@ -17,7 +16,6 @@ export class MoviesService {
     const response = await API.get("movie/popular", {
       params: {
         api_key: "db54934853c9ec1bc9926f2ca56bc80e",
-        language: "pt-BR"
       },
       headers: {
         Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYjU0OTM0ODUzYzllYzFiYzk5MjZmMmNhNTZiYzgwZSIsIm5iZiI6MTcyOTk2Mjc2Ny45MzUwMzQsInN1YiI6IjY3MWE2NGNmZTgzM2Q5MmVmMDVmZTIyYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.64qH8SqWCRjCeEKe_yzjffUYwAahspJUamPDvkIRboQ'
@@ -31,7 +29,6 @@ export class MoviesService {
     const response = await API.get(`movie/${id}`, {
       params: {
         api_key: "db54934853c9ec1bc9926f2ca56bc80e",
-        language: "pt-BR"
       }
     })
 
@@ -43,7 +40,6 @@ export class MoviesService {
     const response = await API.get(`movie/${id}/videos`, {
       params: {
         api_key: "db54934853c9ec1bc9926f2ca56bc80e",
-        language: "pt-BR"
       }
     })
 
